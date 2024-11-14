@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Slideshow</title>
+    <style>
+        .slideshow-container {
+            max-width: 500px;
+            position: relative;
+            margin: auto;
+        }
+        
+        .slides {
+            display: none;
+        }
+        
+        .active {
+            display: block;
+        }
+
+        img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 16px;
+            margin-top: -22px;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            transition: 0.3s;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+        }
+
+        .next {
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
+
+        .prev:hover, .next:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+    </style>
+</head>
+<body>
+
+<h2 style="text-align:center">Slideshow with Button Controls</h2>
+
+<div class="slideshow-container">
+    <!-- Slideshow images -->
+    <div class="slides active">
+        <img src="image1.jpg" alt="Image 1">
+    </div>
+
+    <div class="slides">
+        <img src="image2.jpg" alt="Image 2">
+    </div>
+
+    <div class="slides">
+        <img src="image3.jpg" alt="Image 3">
+    </div>
+
+    <!-- Navigation buttons -->
+    <a class="prev" onclick="changeSlide(-1)">❮</a>
+    <a class="next" onclick="changeSlide(1)">❯</a>
+</div>
+
+<script>
+    let currentSlideIndex = 0;
+    const slides = document.querySelectorAll('.slides');
+
+    function showSlide(index) {
+        slides.forEach(slide => slide.classList.remove('active'));
+        slides[index].classList.add('active');
+    }
+
+    function changeSlide(n) {
+        currentSlideIndex = (currentSlideIndex + n + slides.length) % slides.length;
+        showSlide(currentSlideIndex);
+    }
+</script>
+
+</body>
+</html>
